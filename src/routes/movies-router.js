@@ -27,9 +27,26 @@ moviesRouter
     })
     .catch(next)
   })
+  .patch(async(req, res, next) => {
+    const { id, title } = req.query
+    const updatedMovie = req.body
+    try {
+      const movie = await Movie.findOneAndUpdate(
+        { $or: [{ _id: id }, { title: title }] },
+        { $set: updatedMovie },
+        { new: true }
+      )
+      res.status(200).json(movie)
+    }
+    catch {
+      next()
+    }
+  })
   .delete((req, res, next) => {
     const { id, title } = req.query
-    Movie.findOneAndDelete({$or: [{ _id: id }, { title: title }] })
+    Movie.findOneAndDelete( 
+      {$or: [{ _id: id }, { title: title }] }
+    )
       .then(() => res.status(204).end())
       .catch(next)
   })
