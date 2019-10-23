@@ -39,6 +39,7 @@ moviesRouter
       }
   })
   .post((req, res, next) => {
+    // TODO: check for duplicate entries - refactor into services
     const { title, release_date, overview } = req.body
     const newMovie = new Movie({
       title,

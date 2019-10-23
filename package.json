@@ -1,17 +1,21 @@
 {
   "name": "movies-api",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.15.3"
+  },
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
+    "build": "npm run build",
     "predeploy": "npm audit",
     "deploy": "git push heroku master"
   },
   "keywords": [],
-  "author": "",
+  "author": "Leah White",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
