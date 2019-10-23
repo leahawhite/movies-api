@@ -27,5 +27,12 @@ moviesRouter
     })
     .catch(next)
   })
+  .delete((req, res, next) => {
+    const { id, title } = req.query
+    Movie.findOneAndDelete({$or: [{ _id: id }, { title: title }] })
+      .then(() => res.status(204).end())
+      .catch(next)
+  })
+
 
 module.exports = moviesRouter
