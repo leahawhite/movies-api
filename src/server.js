@@ -29,9 +29,9 @@ db.once('open', () => {
   console.log('MongoDB database connection established successfully')
 })
 
-app.get('/', (req, res) => {
-  res.send('Hello, world')
-})
+const moviesRouter = require('./routes/movies-router')
+
+app.use('/api/movies', moviesRouter)
 
 app.use(function errorHandler(error, req, res, next) {
   let response
