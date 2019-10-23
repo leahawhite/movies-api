@@ -4,7 +4,8 @@ const Movie = require('../models/movie-model')
 moviesRouter
   .route('/')
   .get((req, res, next) => {
-    Movie.find()
+    const { title='' } = req.query
+    Movie.find({ title: new RegExp(title, 'i')})
     .then(movies => {
       res
         .status(200)
